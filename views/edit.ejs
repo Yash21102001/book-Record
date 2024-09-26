@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <style>
+        body{
+            background-image: url(../img/bg4.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 100%;
+           
+        }
+        table{
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            border-radius: 20px; 
+            top: 50%;
+            left: 50%;          
+            z-index: 2;
+            width: 50%;
+            padding: 5px;
+            text-align: center;
+            box-shadow: 0px 2px 15px 3px rgba(244,236,236,0.85);-webkit-box-shadow: 0px 2px 15px 3px rgba(244,236,236,0.85);-moz-box-shadow: 0px 2px 15px 3px rgba(244,236,236,0.85);
+        }
+        form {
+            border-radius: 17px;
+        }
+        input,select,textarea{
+            border-radius: 8px;
+            background-color: rgb(249, 243, 243); /* Fallback color */
+            background-color: rgba(218, 205, 205, 0.4); /* Black w/opacity/see-through */
+            color: white;
+        }
+        td{
+             padding-top: 10px;
+              text-shadow: 1px 1px 2px red, 0 0 1em rgb(58, 58, 173), 0 0 0.2em rgb(246, 246, 249);
+        }
+        .ud{
+            color: bisque;
+        }
+        button{
+            background-color:#32da70;
+        }
+        h2{
+            text-shadow: 1px 1px 2px red, 0 0 1em rgb(58, 58, 173), 0 0 0.2em rgb(246, 246, 249);
+        }
+        .city{
+            background-color: rgb(249, 243, 243); /* Fallback color */
+            background-color: rgba(218, 205, 205, 0.4);
+        }
+    </style>
+</head>
+
+<body >
+    <h2 align="center" class="mt-4">-- Edit User Data --</h2>
+    <form action="/insertData" method="post">
+        <table align="center">
+            <caption>
+            </caption>
+            <tr>
+                <td>Titel</td>
+                <td><input type="text" name="title" id="" value="<%= data.title %>"></td>
+                <td><input type="hidden" name="editId" id="" value="<%= data.id %>"></td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td><input type="text" name="author" id="" value="<%= data.author %>"></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <select name="city" id="" class="text-black bg-light">
+                        <option disabled selected>--Select City--</option>
+                        <% let city=['Surat','Pune','Vadodra','Bharuch'] 
+                        city.map((val,index)=>{
+                            %>
+                            <option value="<%= val %>">
+                                <%= val %>
+                            </option>
+                            <% })%>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="number" name="phone" id="" value="<%= data.price %>"></td>
+            </tr>
+            <tr>
+                <td>Pages</td>
+                <td><input type="radio" name="pages" value="50-100" <% if (data.pages == '50-100') { %> checked <%} %> id="">50-100
+                    <input type="radio" name="pages" value="100-200" <% if (data.pages == '100-200') { %> checked <%} %> id="">100-200
+                    <input type="radio" name="pages" value="200-300" <% if (data.pages == '200-300') { %> checked <%} %> id="">200-300
+                </td>
+            </tr>
+            <tr>
+                <td>description</td>
+                <td><textarea name="description"  id="" value="<%= data.description %>"> <%= data.description %> </textarea></td>
+            </tr>
+            <tr>
+                <td>Language</td>
+                <td><input type="radio" name="pages" value="cricket" <% if(data.pages.includes('hindi')) {%> checked <% }%> id="">Hindi
+                    <input type="radio" name="pages" value="game" <% if(data.pages.includes('english')) {%> checked <% }%> id="">English
+                    <input type="radio" name="pages" value="football" <% if(data.pages.includes('gujrati')) {%> checked <% }%> id="">Gujrati
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" value="Add Data" class="rounded-2 text-dark mb-3">Add Data</button></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+
+</html>
